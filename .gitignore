@@ -1,0 +1,11 @@
+# Local Netlify folder
+.netlify
+
+node_modules/
+.env
+
+# Claude Code local settings
+.claude/
+
+# Large image folders (stored separately, not in git)
+images/catalog-photos/

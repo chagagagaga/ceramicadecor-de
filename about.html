@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Über uns – CeramicaDecor</title>
+  <meta name="description" content="Über uns CeramicaDecor ist ein großes kreatives Team, das durch die Fähigkeit, Keramikarbeiten zu schaffen, vereint ist. Über 14 Jahre Erfahrung, eigene Produktion, schlüsselfertige Installation.">
+  <link rel="canonical" href="https://ceramicadecor.de/about.html">
+  <meta property="og:title" content="Über uns – CeramicaDecor">
+  <meta property="og:description" content="Ein großes kreatives Team, vereint durch die Fähigkeit, Kamine, Outdoor-Küchen und Keramikverkleidungen zu schaffen. Mehr als 14 Jahre Erfahrung, eigene Designabteilung, Arbeit von Grund auf und schlüsselfertig">
+  <meta property="og:image" content="images/hero_bg.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:url" content="https://ceramicadecor.de/about.html">
+  <meta property="og:site_name" content="CeramicaDecor">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.cdnfonts.com/css/tt-ramillas-trl" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=launchqa23">
+  <style>
+    /* HERO */
+    .about-hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      margin-top: var(--header-h, 80px);
+    }
+    .about-hero__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .about-hero__bg picture,
+    .about-hero__bg img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center 30%;
+    }
+    .about-hero__overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        linear-gradient(to bottom, rgba(16,16,16,0.45) 0%, rgba(16,16,16,0.15) 40%, rgba(16,16,16,0.6) 80%, #101010 100%),
+        linear-gradient(to right, rgba(16,16,16,0.4) 0%, rgba(16,16,16,0.05) 60%, rgba(16,16,16,0.0) 100%);
+    }
+    .about-hero__content {
+      position: relative;
+      z-index: 2;
+      padding: 160px 20px 100px;
+    }
+    .about-hero__title {
+      font-family: 'TT Ramillas Trl', serif;
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-weight: 400;
+      color: #fff;
+      margin: 0 0 24px;
+      line-height: 1.15;
+    }
+    .about-hero__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(1rem, 1.5vw, 1.25rem);
+      font-weight: 300;
+      color: rgba(255,255,255,0.7);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* ABOUT CARDS */
+    .about-info {
+      background: #101010;
+      padding: 100px 0 60px;
+    }
+    .about-info__header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .about-info__desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      max-width: 800px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .about-info__cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .about-info__card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .about-info__card:hover {
+      border-color: rgba(203,59,37,0.4);
+      transform: translateY(-2px);
+    }
+    .about-info__card-icon {
+      margin-bottom: 20px;
+    }
+    .about-info__card-title {
+      font-family: 'TT Ramillas Trl', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+    .about-info__card-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.6;
+    }
+
+    /* TEAM GRID */
+    .team-grid {
+      background: #101010;
+      padding: 80px 0 100px;
+    }
+    .team-grid__header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .team-grid__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .team-grid__cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .team-grid__card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 36px 24px 28px;
+      text-align: center;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+    .team-grid__card:hover {
+      border-color: rgba(203,59,37,0.4);
+      transform: translateY(-2px);
+    }
+    .team-grid__avatar {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 auto 20px;
+      border: 2px solid rgba(203,59,37,0.3);
+    }
+    .team-grid__avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-grid__name {
+      font-family: 'TT Ramillas Trl', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .team-grid__role {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* CONTACT FORM */
+    .contact-form-section {
+      background: #101010;
+      padding: 80px 0 100px;
+      position: relative;
+    }
+    .contact-form-section::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(203,59,37,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-form__header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .contact-form__subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.55);
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .contact-form__form {
+      max-width: 540px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-form__group {
+      margin-bottom: 20px;
+    }
+    .contact-form__label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+    .contact-form__input,
+    .contact-form__textarea {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: #fff;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+    .contact-form__input:focus,
+    .contact-form__textarea:focus {
+      border-color: rgba(203,59,37,0.6);
+    }
+    .contact-form__input::placeholder,
+    .contact-form__textarea::placeholder {
+      color: rgba(255,255,255,0.3);
+    }
+    .contact-form__textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .contact-form__submit {
+      width: 100%;
+      padding: 16px 32px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background: #cb3b25;
+      border: 1px solid #cb3b25;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 8px;
+    }
+    .contact-form__submit:hover {
+      background: #e14c35;
+      border-color: #e14c35;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(203,59,37,0.3);
+    }
+    .contact-form__submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+    .contact-form__success {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      background: rgba(147,210,0,0.1);
+      border: 1px solid rgba(147,210,0,0.3);
+      border-radius: 8px;
+      color: #93d200;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      margin-top: 16px;
+    }
+    .contact-form__error {
+      display: none;
+      text-align: center;
+      padding: 24px;
+      background: rgba(203,59,37,0.1);
+      border: 1px solid rgba(203,59,37,0.3);
+      border-radius: 8px;
+      color: #cb3b25;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      margin-top: 16px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 1024px) {
+      .about-info__cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .team-grid__cards {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 768px) {
+      .about-info__cards {
+        grid-template-columns: 1fr;
+      }
+      .team-grid__cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .team-grid__card {
+        padding: 24px 12px 20px;
+      }
+      .team-grid__avatar {
+        width: 64px;
+        height: 64px;
+      }
+      .team-grid__name {
+        font-size: 0.95rem;
+      }
+      .team-grid__role {
+        font-size: 0.75rem;
+      }
+      .about-info {
+        padding-top: 40px;
+      }
+      .about-hero {
+        min-height: 55vh;
+      }
+      .about-hero__content {
+        padding: 130px 20px 70px;
+      }
+    }
+  </style>
+  
+  <section class="about-info" id="about-info">
+    <div class="container">
+      <div class="about-info__header">
+        <h2 class="section-title section-title--center">Moderner Ansatz<br>zur traditionellen Kunst</h2>
+        <p class="about-info__desc">Unser Prozess basiert auf mutigen Ideen, dem Können und der Professionalität unserer Mitarbeiter. Jedes Projekt ist ein gemeinsamer kreativer Prozess von Designern, Planern, Gestaltern und Künstlern.</p>
+      </div>
+      <div class="about-info__cards">
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 5C12 5 8 12 8 20s4 15 12 15 12-7 12-15S28 5 20 5z" stroke="#cb3b25" stroke-width="1.5"/><path d="M15 18c2-4 8-4 10 0" stroke="#cb3b25" stroke-width="1.5" stroke-linecap="round"/><path d="M20 25v-7" stroke="#cb3b25" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Von Hand geformt und bemalt</h3>
+          <p class="about-info__card-text">Unser Katalog umfasst handgeformte Ofenkacheln, Keramikplatten, komplexe architektonische Formen und Innenkeramik. Jedes Element wird in unserer eigenen Produktionsstätte von Hand gefertigt, glasiert und bemalt.</p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="10" stroke="#cb3b25" stroke-width="1.5"/><path d="M20 14v6l4 4" stroke="#cb3b25" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Hochtemperaturbrand</h3>
+          <p class="about-info__card-text">Jedes Element wird einem Hochtemperaturbrand von über 1000 °C unterzogen. Dies stellt sicher, dass unsere Produkte jahrzehntelang stabil, hitzebeständig und langlebig sind.</p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M10 30L20 10l10 20H10z" stroke="#cb3b25" stroke-width="1.5" stroke-linejoin="round"/><path d="M15 30l5-10 5 10" stroke="#cb3b25" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Gewinner des Wettbewerbs</h3>
+          <p class="about-info__card-text">Gewinner eines offenen Architekturwettbewerbs in den Kategorien „Kachelöfen und Kamine“ und „Grillplatz“. Anerkennung aus der Fachwelt.</p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="12" width="24" height="18" rx="2" stroke="#cb3b25" stroke-width="1.5"/><path d="M8 18h24M14 12V8M26 12V8" stroke="#cb3b25" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Zusammenarbeit mit Profis</h3>
+          <p class="about-info__card-text">Wir arbeiten mit Bauunternehmen, Designbüros und Restaurierungswerkstätten zusammen. Enge Zusammenarbeit mit Architekten und Designern in Deutschland und Europa.</p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 8l3 6h7l-5.5 4.5 2 7L20 21l-6.5 4.5 2-7L10 14h7l3-6z" stroke="#cb3b25" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Einheitlicher kreativer Prozess</h3>
+          <p class="about-info__card-text">Jedes Projekt ist eine Zusammenarbeit von Designern, Planern, Formenbauern und Künstlern. Von der Idee bis zum fertigen Produkt entsteht alles in unserer Produktion.</p>
+        </div>
+        <div class="about-info__card">
+          <div class="about-info__card-icon">
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="15" r="5" stroke="#cb3b25" stroke-width="1.5"/><path d="M10 33c0-5.523 4.477-10 10-10s10 4.477 10 10" stroke="#cb3b25" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="about-info__card-title">Talentiertes Team</h3>
+          <p class="about-info__card-text">Mehr als 100 Mitarbeiter: Designer, Ingenieure, Technologen, Künstler, Installateure. Jeder Spezialist ist ein Profi mit langjähriger Erfahrung.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="team-grid" id="team">
+    <div class="container">
+      <div class="team-grid__header">
+        <h2 class="section-title section-title--center">Unser Team</h2>
+        <p class="team-grid__subtitle">Profis, die einzigartige Keramik herstellen</p>
+      </div>
+      <div class="team-grid__cards">
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_zolotarev.webp" type="image/webp"><img src="images/team_zolotarev.jpg" alt="Iwan Solotarew" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Iwan Solotarew</h3>
+          <p class="team-grid__role">Hauptgeschäftsführer</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_lyalin.webp" type="image/webp"><img src="images/team_lyalin.jpg" alt="Andrey Lyalin" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Andrey Lyalin</h3>
+          <p class="team-grid__role">Kreativdirektor, Entwicklungsdirektor</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_mamontova.webp" type="image/webp"><img src="images/team_mamontova.jpg" alt="Evgenia Mamontova" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Evgenia Mamontova</h3>
+          <p class="team-grid__role">Kaufmännischer Leiter</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_polozova.webp" type="image/webp"><img src="images/team_polozova.jpg" alt="Elena Polozova" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Elena Polozova</h3>
+          <p class="team-grid__role">Hauptprojektleiter</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_ardishvili.webp" type="image/webp"><img src="images/team_ardishvili.jpg" alt="Nana Ardishvili" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Nana Ardishvili</h3>
+          <p class="team-grid__role">Projektmanager, Designer</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_lavrova.webp" type="image/webp"><img src="images/team_lavrova.jpg" alt="Ilana Lawrowa" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Ilana Lawrowa</h3>
+          <p class="team-grid__role">Chefarchitekt und Designer</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_sovetov.webp" type="image/webp"><img src="images/team_sovetov.jpg" alt="Andrey Sovetov" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Andrey Sovetov</h3>
+          <p class="team-grid__role">Leitender Designer</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><img src="images/team_Sergio.jpg" alt="Sergey Shirchkov" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Sergey Shirchkov</h3>
+          <p class="team-grid__role">Partnerbeziehungsmanager</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><img src="images/team_Elena.jpg" alt="Elena Bykova" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Elena Bykova</h3>
+          <p class="team-grid__role">Logistikmanager</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><img src="images/team_Anton.jpg" alt="Anton Aschikhmin" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Anton Aschikhmin</h3>
+          <p class="team-grid__role">Leiter Produktion</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_basov.webp" type="image/webp"><img src="images/team_basov.jpg" alt="Denis Basov" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Denis Basov</h3>
+          <p class="team-grid__role">Leiter Produktion</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_selischev.webp" type="image/webp"><img src="images/team_selischev.jpg" alt="Alexander Selishchev" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Alexander Selishchev</h3>
+          <p class="team-grid__role">Technischer Direktor, Cheftechnologe</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><source srcset="images/team_kryhtina.webp" type="image/webp"><img src="images/team_kryhtina.jpg" alt="Natalia Krykhtina" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Natalia Krykhtina</h3>
+          <p class="team-grid__role">Hauptkünstler</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><img src="images/team_panin.jpg" alt="Andrey Panin" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Andrey Panin</h3>
+          <p class="team-grid__role">Führender Installateur für Ofenkachel-Verkleidung</p>
+        </div>
+
+        <div class="team-grid__card">
+          <div class="team-grid__avatar">
+            <picture><img src="images/team_ostapenko.jpg" alt="Wjatscheslaw Ostapenko" loading="lazy"></picture></div>
+          <h3 class="team-grid__name">Wjatscheslaw Ostapenko</h3>
+          <p class="team-grid__role">Führender Installateur für Ofenkachel-Verkleidung</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="process-steps" id="process-steps">
+    <div class="container">
+      <div class="process-steps__header">
+        <h2 class="section-title">Wie wir Feuerstellen und Outdoor-Küchen bauen</h2>
+        <p class="section-subtitle">Jedes Projekt reicht von der Idee bis zur Installation – alles wird in unserer Produktion manuell erstellt</p>
+      </div>
+      <div class="process-steps__grid">
+        <div class="process-steps__item">
+          <div class="process-steps__img">
+            <picture><source srcset="images/work_kamin1_new.webp" type="image/webp"><img src="images/work_kamin1_new.jpg" alt="Technik und Design" loading="lazy"></picture>
+          </div>
+          <div class="process-steps__info">
+            <span class="process-steps__num">01</span>
+            <h3 class="process-steps__name">Technik und Design</h3>
+            <p class="process-steps__desc">Wir erstellen ein Kamin- oder Ofenprojekt unter Berücksichtigung der Architektur des Hauses, der Inneneinrichtung und Ihrer Wünsche. Wir berechnen die thermische Belastung und wählen Materialien aus.</p>
+          </div>
+        </div>
+        <div class="process-steps__item process-steps__item--reverse">
+          <div class="process-steps__img">
+            <picture><source srcset="images/work_kamin2_new.webp" type="image/webp"><img src="images/work_kamin2_new.jpg" alt="Kacheln herstellen" loading="lazy"></picture>
+          </div>
+          <div class="process-steps__info">
+            <span class="process-steps__num">02</span>
+            <h3 class="process-steps__name">Kacheln herstellen</h3>
+            <p class="process-steps__desc">Jede Fliese wird von Hand geformt, mit Glasur überzogen und in einem Ofen bei Temperaturen über 1000 °C gebrannt.</p>
+          </div>
+        </div>
+        <div class="process-steps__item">
+          <div class="process-steps__img">
+            <picture><source srcset="images/work_oblicovka1_new.webp" type="image/webp"><img src="images/work_oblicovka1_new.jpg" alt="Installation des Strukturteils" loading="lazy"></picture>
+          </div>
+          <div class="process-steps__info">
+            <span class="process-steps__num">03</span>
+            <h3 class="process-steps__name">Installation des Strukturteils</h3>
+            <p class="process-steps__desc">Wir bauen den Sockel des Kamins oder Ofens, installieren den Feuerraum und das Schornsteinsystem. Alle Arbeiten erfolgen im Einklang mit den Bauvorschriften.</p>
+          </div>
+        </div>
+        <div class="process-steps__item process-steps__item--reverse">
+          <div class="process-steps__img">
+            <picture><source srcset="images/work_restavraciya_new.webp" type="image/webp"><img src="images/work_restavraciya_new.jpg" alt="Montage der Verkleidung" loading="lazy"></picture>
+          </div>
+          <div class="process-steps__info">
+            <span class="process-steps__num">04</span>
+            <h3 class="process-steps__name">Montage der Verkleidung</h3>
+            <p class="process-steps__desc">Wir installieren die Ofenkachel-Verkleidung manuell und passen jedes Element an. Abschließende Verfugung und Qualitätskontrolle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section class="contact-form-section" id="contact-form">
+    <div class="container">
+      <div class="contact-form__header">
+        <h2 class="section-title section-title--center">Anfrage senden</h2>
+        <p class="contact-form__subtitle">Wir beantworten alle Fragen zu unseren Kaminen, Kacheln und Arbeitsabläufen</p>
+      </div>
+      <form class="contact-form__form" id="aboutContactForm" novalidate>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="contactName">Name *</label>
+          <input type="text" id="contactName" name="name" class="contact-form__input" placeholder="Ihr Name" required>
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="contactPhone">Telefon *</label>
+          <input type="tel" id="contactPhone" name="phone" class="contact-form__input" placeholder="+49 ___ ________" required>
+        </div>
+        <div class="contact-form__group">
+          <label class="contact-form__label" for="contactComment">Kommentar</label>
+          <textarea id="contactComment" name="comment" class="contact-form__textarea" placeholder="Erzählen Sie uns von Ihrem Projekt..."></textarea>
+        </div>
+        <button type="submit" class="contact-form__submit" id="contactSubmitBtn">Anfrage senden</button>
+        <div class="contact-form__success" id="contactSuccess">Danke! Ihre Anfrage wurde versendet. Wir werden uns in Kürze mit Ihnen in Verbindung setzen.</div>
+        <div class="contact-form__error" id="contactError">Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.</div>
+      </form>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer" id="footer">
+    <div class="footer__glow"></div>
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <a href="index.html" class="footer__logo"><img src="images/logo.png" alt="CeramicaDecor" class="footer__logo-img"></a>
+          <p class="footer__tagline">Handgefertigte Ofenkacheln und Kachelkamine.<br>14+ Jahre Erfahrung, eigene Manufaktur.<br>Beratung, Planung und Montage für Deutschland</p>
+        </div>
+        <div class="footer__columns">
+          <div class="footer__col">
+            <h4 class="footer__col-title">Katalog</h4>
+            <ul class="footer__col-list">
+              <li><a href="izrazcy.html">Ofenkacheln</a></li>
+              <li><a href="catalog.html?cat=kaminy">Kachelkamine</a></li>
+              <li><a href="catalog.html?cat=bbq">Outdoor-Küchen</a></li>
+              <li><a href="ready.html">Kaminöfen ab Lager</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">Unternehmen</h4>
+            <ul class="footer__col-list">
+              <li><a href="about.html">Über uns</a></li>
+              <li><a href="index.html#contact">Kontakt</a></li>
+            </ul>
+          </div>
+          <div class="footer__col">
+            <h4 class="footer__col-title">Kontakt</h4>
+            <ul class="footer__col-list">
+              <li><a href="tel:+77027352130">+7 702 735 21 30</a></li>
+              <li><a href="mailto:info@ceramicadecor.ru">info@ceramicadecor.ru</a></li>
+            </ul>
+            <div class="footer__socials">
+              <a href="https://wa.me/77027352130?text=Guten%20Tag%2C%20ich%20interessiere%20mich%20f%C3%BCr%20einen%20Kachelkamin%2C%20Kachelofen%20oder%20eine%20Outdoor-K%C3%BCche%20von%20CeramicaDecor.%20Bitte%20beraten%20Sie%20mich." target="_blank" aria-label="WhatsApp" class="footer__social--wa"><svg width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+              <a href="https://instagram.com/ceramicadecor.ru" target="_blank" aria-label="Instagram"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#fff" stroke-width="1.3"/><circle cx="12" cy="12" r="5" stroke="#fff" stroke-width="1.3"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <p class="footer__copy">© 2013–2026 CeramicaDecor. Alle Rechte vorbehalten.</p>
+        <div class="footer__legal">
+          <a href="privacy.html" target="_blank">Datenschutzerklärung</a>
+          <a href="terms.html" target="_blank">Impressum</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=launchqa23"></script>
+  <script>
+    (function() {
+      var form = document.getElementById('aboutContactForm');
+      var submitBtn = document.getElementById('contactSubmitBtn');
+      var successMsg = document.getElementById('contactSuccess');
+      var errorMsg = document.getElementById('contactError');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        successMsg.style.display = 'none';
+        errorMsg.style.display = 'none';
+
+        var name = document.getElementById('contactName').value.trim();
+        var phone = document.getElementById('contactPhone').value.trim();
+        var comment = document.getElementById('contactComment').value.trim();
+
+        if (!name || !phone) {
+          errorMsg.textContent = 'Bitte füllen Sie die erforderlichen Felder (Name und Telefon) aus.';
+          errorMsg.style.display = 'block';
+          return;
+        }
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Senden...';
+
+        // Meta Pixel Lead event
+        if (typeof fbq === 'function') {
+          fbq('track', 'Lead', { content_name: 'Contact Form', content_category: 'Über uns' });
+        }
+
+        var text = '\u{1F4CB} Neue Anfrage von der Website!\n'
+          + '\u{1F464} Name: ' + name + '\n'
+          + '\u{1F4DE} Telefon: ' + phone + '\n'
+          + '\u{1F4AC} Kommentar: ' + (comment || '—') + '\n'
+          + '\u{1F4C4} Seite: Über uns';
+
+        var botToken = '8724536509:AAGgAWOhsJ2n8T0xRmb3dOt7vQY3WwHVq3A';
+        var chatId = '-1003871745435';
+        var url = 'https://api.telegram.org/bot' + botToken + '/sendMessage';
+
+        fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            chat_id: chatId,
+            text: text,
+            parse_mode: 'HTML'
+          })
+        })
+        .then(function(response) {
+          if (response.ok) {
+            successMsg.style.display = 'block';
+            form.reset();
+          } else {
+            throw new Error('Telegram API error');
+          }
+        })
+        .catch(function() {
+          errorMsg.textContent = 'Beim Senden ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut oder kontaktieren Sie uns telefonisch.';
+          errorMsg.style.display = 'block';
+        })
+        .finally(function() {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Anfrage senden';
+        });
+      });
+    })();
+  </script>
+  <script src="search.js?v=launchqa23" defer></script>
+</body>
+</html>
