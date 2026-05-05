@@ -23,11 +23,14 @@
   <style>
     /* HERO */
     .izrazcy-hero {
-      padding: 160px 0 140px;
-      margin-bottom: -60px;
+      min-height: clamp(520px, 66vh, 720px);
+      padding: 180px 0 112px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      display: flex;
+      align-items: center;
+      box-sizing: border-box;
     }
     .izrazcy-hero__bg {
       position: absolute;
@@ -50,24 +53,36 @@
     .izrazcy-hero__content {
       position: relative;
       z-index: 2;
+      max-width: 1180px;
     }
     .izrazcy-hero__title {
       font-family: 'TT Ramillas Trl', serif;
-      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-size: clamp(2.7rem, 4vw, 4.15rem);
       font-weight: 400;
       color: #fff;
-      margin: 0 0 16px;
-      letter-spacing: -0.02em;
+      margin: 0 auto 22px;
+      letter-spacing: 0;
+      line-height: 1.14;
+      text-wrap: balance;
     }
     .izrazcy-hero__subtitle {
       font-family: 'Inter', sans-serif;
-      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-size: clamp(1.05rem, 1.35vw, 1.28rem);
       font-weight: 300;
-      color: rgba(255,255,255,0.6);
-      margin: 0;
+      color: rgba(255,255,255,0.72);
+      margin: 0 auto;
+      max-width: 920px;
+      line-height: 1.55;
       text-wrap: balance;
     }
     @media (max-width: 768px) {
+      .izrazcy-hero {
+        min-height: 560px;
+        padding: 132px 0 72px;
+      }
+      .izrazcy-hero__title {
+        font-size: clamp(2.35rem, 12vw, 3.25rem);
+      }
       .izrazcy-hero__subtitle br { display: none; }
     }
 
@@ -117,7 +132,7 @@
     /* CATALOG */
     .izrazcy-catalog {
       background: #101010;
-      padding: 16px 0 80px;
+      padding: 72px 0 80px;
     }
     .izrazcy-catalog__header {
       text-align: center;
