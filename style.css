@@ -4578,10 +4578,12 @@ ul, ol {
   text-align: center;
 }
 .form_1_wrapper .right > a.phone {
-  font-family: 'TT Ramillas', serif;
-  font-size: 40px;
+  font-family: 'TT Commons Pro', sans-serif;
+  font-size: 28px;
   line-height: 1.2;
   color: #FFFFFF;
+  word-break: break-word;
+  text-decoration: none;
 }
 .form_1_wrapper .right .messengers_block {
   display: flex;
@@ -4699,7 +4701,7 @@ ul, ol {
     margin: 0 auto 10px auto;
   }
   .form_1_wrapper .right > a.phone {
-    font-size: 22px;
+    font-size: 20px;
   }
   .form_1_wrapper .right .messengers_block {
     margin: 20px 0 0 0;
