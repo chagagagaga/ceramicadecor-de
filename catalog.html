@@ -1903,7 +1903,7 @@
         var sliderDots = '';
         p.images.forEach(function(img, idx) {
           var webpImg = img.replace(/\.(jpg|jpeg|png)$/i, '.webp');
-          sliderImgs += '<picture><source srcset="images/' + webpImg + '" type="image/webp"><img src="images/' + img + '" alt="' + p.name + '" loading="' + (idx === 0 ? 'eager' : 'lazy') + '" class="' + (idx === 0 ? 'active' : '') + '" onerror="this.style.display=\'none\'"></picture>';
+          sliderImgs += '<picture><source srcset="images/' + webpImg + '" type="image/webp"><img src="images/' + img + '" alt="' + p.name + '" loading="lazy" decoding="async" class="' + (idx === 0 ? 'active' : '') + '" onerror="this.style.display=\'none\'"></picture>';
           sliderDots += '<button class="product-card__dot' + (idx === 0 ? ' active' : '') + '" data-idx="' + idx + '"></button>';
         });
 
