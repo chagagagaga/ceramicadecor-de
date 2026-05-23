@@ -260,18 +260,18 @@
       });
     }
 
-    var tgText = '\uD83D\uDCCB Neue Anfrage von der Website!\n\uD83D\uDC64 Name: ' + nameInput.value.trim();
+    var tgText = '\uD83D\uDCCB Лиды с DE сайта\n🇩🇪 Новая заявка с сайта ceramicadecor.de\n\uD83D\uDC64 Имя: ' + nameInput.value.trim();
     tgText += '\n\u2709\uFE0F E-Mail: ' + (emailValue || '-');
-    tgText += '\n\uD83D\uDCDE Telefon: ' + (phoneValue || '-');
+    tgText += '\n\uD83D\uDCDE Телефон: ' + (phoneValue || '-');
     if (commentInput && commentInput.value.trim()) {
-      tgText += '\n\uD83D\uDCDD Kommentar: ' + commentInput.value.trim();
+      tgText += '\n\uD83D\uDCDD Комментарий: ' + commentInput.value.trim();
     }
-    tgText += '\n\uD83D\uDCC4 Seite: ' + document.title;
-    tgText += '\n\uD83D\uDCCD Quelle: ' + (sourceLabel || 'Website-Formular');
-    fetch('https://api.telegram.org/bot8724536509:AAGgAWOhsJ2n8T0xRmb3dOt7vQY3WwHVq3A/sendMessage', {
+    tgText += '\n\uD83D\uDCC4 Страница: ' + document.title;
+    tgText += '\n\uD83D\uDCCD Источник: ' + (sourceLabel || 'Website-Formular');
+    fetch('https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: '-1003871745435', text: tgText })
+      body: JSON.stringify({ chat_id: '-1003909949224', text: tgText })
     });
 
     return true;
@@ -596,16 +596,7 @@
     var href = link.href;
     var phoneMatch = href.match(/wa\.me\/(\d+)/);
     var phone = phoneMatch ? phoneMatch[1] : (window.ACTIVE_PHONE || '77027352130');
-    var text = [
-      'Guten Tag! Ich interessiere mich fur einen kostenlosen 3D-Entwurf und eine Kostenschatzung.',
-      '',
-      'Stadt / Region:',
-      'Projektart:',
-      'Ungefahre Masse:',
-      'Fotos oder Plan: sende ich bei Bedarf mit',
-      '',
-      'Anfrage #' + getLeadNumber()
-    ].join('\n');
+    var text = 'Guten Tag! Ich interessiere mich für einen Kachelkamin von CeramicaDecor. Bitte beraten Sie mich.';
 
     return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
   }
