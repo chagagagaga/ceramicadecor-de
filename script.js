@@ -10,7 +10,7 @@
   t.src = 'https://www.clarity.ms/tag/' + i;
   y = l.getElementsByTagName(r)[0];
   y.parentNode.insertBefore(t, y);
-})(window, document, 'clarity', 'script', 'wn9tvhnw8i');
+})(window, document, 'clarity', 'script', 'wvnznpinxa');
 
 /* ----- Active WhatsApp destination ----- */
 (function() {
@@ -27,6 +27,74 @@
 
 (function() {
   'use strict';
+
+  var TELEGRAM_ENDPOINT = 'https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage';
+  var TELEGRAM_CHAT_ID = '-1003909949224';
+
+  function escapeTelegramHtml(value) {
+    return String(value || '').replace(/[&<>"']/g, function (char) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#39;'
+      }[char];
+    });
+  }
+
+  function currentPageUrl() {
+    return window.location.href.split('#')[0];
+  }
+
+  function buildTelegramLeadMessage(data) {
+    var pageUrl = currentPageUrl();
+    var text = '🇩🇪 Новая заявка с сайта <a href="https://ceramicadecor.de/">ceramicadecor.de</a>';
+    text += '\n👤 Имя: ' + escapeTelegramHtml(data.name || '-');
+    text += '\n✉️ E-Mail: ' + (data.email ? '<a href="mailto:' + escapeTelegramHtml(data.email) + '">' + escapeTelegramHtml(data.email) + '</a>' : '-');
+    text += '\n📞 Телефон: ' + escapeTelegramHtml(data.phone || '-');
+    if (data.product) text += '\n🛒 Продукт: ' + escapeTelegramHtml(data.product);
+    if (data.comment) text += '\n💬 Комментарий: ' + escapeTelegramHtml(data.comment);
+    text += '\n📄 Страница: <a href="' + escapeTelegramHtml(pageUrl) + '">' + escapeTelegramHtml(pageUrl) + '</a>';
+    text += '\n📍 Источник: ' + escapeTelegramHtml(data.source || 'Форма сайта');
+    return text;
+  }
+
+  function sendTelegramLead(text) {
+    return fetch(TELEGRAM_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text,
+        parse_mode: 'HTML',
+        disable_web_page_preview: true
+      })
+    });
+  }
+
+  function updateEmailValidityMessage(input) {
+    if (!input || input.type !== 'email') return;
+    if (input.validity.valueMissing) {
+      input.setCustomValidity('Bitte geben Sie Ihre E-Mail-Adresse ein.');
+    } else if (input.validity.typeMismatch) {
+      input.setCustomValidity('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+    } else {
+      input.setCustomValidity('');
+    }
+  }
+
+  document.addEventListener('invalid', function (event) {
+    if (event.target && event.target.matches('input[type="email"]')) {
+      updateEmailValidityMessage(event.target);
+    }
+  }, true);
+
+  document.addEventListener('input', function (event) {
+    if (event.target && event.target.matches('input[type="email"]')) {
+      updateEmailValidityMessage(event.target);
+    }
+  }, true);
 
   /* ----- Header scroll effect ----- */
   const header = document.getElementById('header');
@@ -225,13 +293,17 @@
     var phoneValue = phoneInput ? phoneInput.value.trim() : '';
     var emailValue = emailInput ? emailInput.value.trim() : '';
 
-    if (!phoneValue && !emailValue) {
-      var fieldToFocus = emailInput || phoneInput;
-      if (fieldToFocus) {
-        fieldToFocus.focus();
-        fieldToFocus.style.borderColor = '#cb3b25';
-        var inputGroup = fieldToFocus.closest('.input-group');
+    if (emailInput) {
+      updateEmailValidityMessage(emailInput);
+    }
+
+    if (!emailInput || !emailInput.checkValidity()) {
+      if (emailInput) {
+        emailInput.focus();
+        emailInput.style.borderColor = '#cb3b25';
+        var inputGroup = emailInput.closest('.input-group');
         if (inputGroup) inputGroup.style.borderColor = '#cb3b25';
+        emailInput.reportValidity();
       }
       return false;
     }
@@ -243,19 +315,13 @@
       });
     }
 
-    var tgText = '\uD83D\uDCCB Лиды с DE сайта\n🇩🇪 Новая заявка с сайта ceramicadecor.de\n\uD83D\uDC64 Имя: ' + nameInput.value.trim();
-    tgText += '\n\u2709\uFE0F E-Mail: ' + (emailValue || '-');
-    tgText += '\n\uD83D\uDCDE Телефон: ' + (phoneValue || '-');
-    if (commentInput && commentInput.value.trim()) {
-      tgText += '\n\uD83D\uDCDD Комментарий: ' + commentInput.value.trim();
-    }
-    tgText += '\n\uD83D\uDCC4 Страница: ' + document.title;
-    tgText += '\n\uD83D\uDCCD Источник: ' + (sourceLabel || 'Website-Formular');
-    fetch('https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: '-1003909949224', text: tgText })
-    });
+    sendTelegramLead(buildTelegramLeadMessage({
+      name: nameInput.value.trim(),
+      email: emailValue,
+      phone: phoneValue,
+      comment: commentInput && commentInput.value.trim(),
+      source: sourceLabel || 'Website-Formular'
+    }));
 
     return true;
   }
@@ -291,9 +357,9 @@
         '<h2 class="lead-modal__title" id="leadModalTitle">Kostenloser 3D-Entwurf und Kostenschätzung in 2-3 Tagen</h2>' +
         '<p class="lead-modal__text">Hinterlassen Sie Ihre Kontaktdaten. Wir melden uns mit den nächsten Schritten.</p>' +
         '<form class="lead-modal__form" id="leadModalForm">' +
-          '<div class="input-group"><label>Ihr Name</label><input type="text" name="name" placeholder="Name eingeben"></div>' +
-          '<div class="input-group"><label>E-Mail</label><input type="email" name="email" autocomplete="email" placeholder="name@example.de"></div>' +
-          '<div class="input-group"><label>Telefon (optional)</label><input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+49 ..."></div>' +
+          '<div class="input-group"><label>Ihr Name</label><input type="text" name="name" placeholder="Name eingeben" required></div>' +
+          '<div class="input-group"><label>E-Mail</label><input type="email" name="email" autocomplete="email" placeholder="name@example.de" required></div>' +
+          '<div class="input-group"><label>Telefon (optional)</label><input type="tel" name="phone" inputmode="tel" autocomplete="tel" placeholder="+420 / +49 / +..."></div>' +
           '<div class="lead-modal__privacy">Mit dem Absenden stimmen Sie unserer <a href="privacy.html" target="_blank">Datenschutzerklärung</a> zu.</div>' +
           '<button class="lead-modal__submit" type="submit">Anfrage senden</button>' +
           '<p class="lead-modal__success">Danke! Wir melden uns in Kürze bei Ihnen.</p>' +
@@ -377,17 +443,7 @@
         return;
       }
 
-      if (!((emailInput && emailInput.value.trim()) || (phoneInput && phoneInput.value.trim()))) {
-        var fieldToFocus = emailInput || phoneInput;
-        if (fieldToFocus) {
-          fieldToFocus.focus();
-          var inputGroup = fieldToFocus.closest('.input-group');
-          if (inputGroup) inputGroup.style.borderColor = '#cb3b25';
-        }
-        return;
-      }
-
-      sendLeadForm(this, 'Website-Formular');
+      if (!sendLeadForm(this, 'Website-Formular')) return;
 
       // Visual feedback
       var submitBtn = this.querySelector('button[type="submit"]');
@@ -416,20 +472,13 @@
     });
   }
 
-  /* ----- Phone input mask (all tel inputs) ----- */
-  document.querySelectorAll('input[type="tel"]').forEach(function (phoneInput) {
-    phoneInput.addEventListener('focus', function() {
-      if (!this.value || this.value === '+49') {
-        this.value = '+49 ';
-      }
-    });
-    phoneInput.addEventListener('input', function() {
-      var val = this.value.replace(/\D/g, '');
-      // Remove leading 49 if present
-      if (val.indexOf('49') === 0) val = val.substring(2);
-      this.value = '+49 ' + val.substring(0, 14);
-    });
-  });
+  /* ----- Phone input cleanup (international numbers) ----- */
+  document.addEventListener('input', function (event) {
+    if (!event.target || !event.target.matches('input[type="tel"]')) return;
+    var value = event.target.value.replace(/[^\d+\s().-]/g, '');
+    value = value.replace(/(?!^)\+/g, '');
+    event.target.value = value;
+  }, true);
 
   /* ----- Showcase Gallery Slider (multiple galleries) ----- */
   var allGalleries = document.querySelectorAll('.showcase__item .showcase__gallery');

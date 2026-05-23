@@ -237,7 +237,7 @@ ul, ol {
 }
 
 .header__nav-link {
-  font-size: clamp(15px, 1vw, 18px);
+  font-size: clamp(18px, 1.12vw, 21px);
   font-weight: 400;
   color: var(--text-muted);
   transition: color var(--transition);
@@ -2755,7 +2755,7 @@ ul, ol {
   }
 
   .header__nav-link {
-    font-size: 15px;
+    font-size: 18px;
   }
 
   .header__phone-desktop {
@@ -2979,8 +2979,7 @@ ul, ol {
 
   .hero__bg img {
     object-position: center 70%;
-    transform: scale(1.05);
-    transform-origin: center 0%;
+    transform: none;
   }
 
   .hero__overlay {

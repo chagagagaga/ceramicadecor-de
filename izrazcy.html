@@ -21,7 +21,7 @@
   <noscript><link rel="stylesheet" href="https://fonts.cdnfonts.com/css/tt-ramillas-trl"></noscript>
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"></noscript>
-  <link rel="stylesheet" href="style.css?v=videos1">
+  <link rel="stylesheet" href="style.css?v=launch-speed1">
   <style>
     /* HERO */
     .izrazcy-hero {
@@ -1394,6 +1394,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#fff" stroke-width="1.3"/><circle cx="12" cy="12" r="5" stroke="#fff" stroke-width="1.3"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg>
           </a>
         </div>
+        <a href="tel:+420771546385" class="header__nav-phone-link">+420 771 546 385</a>
         <div class="header__nav-item--search"><a href="#" class="header__nav-link" id="searchBtnMobile"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Suchen</a></div>
       </nav>
 
@@ -1405,6 +1406,7 @@
         <a href="https://instagram.com/ceramicadecor.de" target="_blank" class="header__ig-btn" aria-label="Instagram">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#fff" stroke-width="1.3"/><circle cx="12" cy="12" r="5" stroke="#fff" stroke-width="1.3"/><circle cx="17.5" cy="6.5" r="1" fill="#fff"/></svg>
         </a>
+        <a href="tel:+420771546385" class="header__phone-desktop">+420 771 546 385</a>
         <button class="header__burger" id="burgerBtn" aria-label="Menü">
           <span></span><span></span><span></span>
         </button>
@@ -1414,7 +1416,7 @@
 
   <section class="izrazcy-hero">
     <div class="izrazcy-hero__bg">
-      <img src="images/izrazcy_card.jpg" alt="Handgefertigte Ofenkacheln von CeramicaDecor" loading="eager" decoding="async">
+      <img src="images/izrazcy_card.jpg" alt="Handgefertigte Ofenkacheln von CeramicaDecor" loading="eager" fetchpriority="high" decoding="async">
     </div>
     <div class="izrazcy-hero__overlay"></div>
     <div class="container izrazcy-hero__content">
@@ -1521,11 +1523,15 @@
         <form class="izrazcy-cta__form" id="izrazcyForm" name="izrazcy" method="POST" data-netlify="true">
           <div class="izrazcy-cta__group">
             <label class="izrazcy-cta__label">Ihr Name</label>
-            <input type="text" name="name" class="izrazcy-cta__input" placeholder="Name eingeben">
+            <input type="text" name="name" class="izrazcy-cta__input" placeholder="Name eingeben" required>
           </div>
           <div class="izrazcy-cta__group">
-            <label class="izrazcy-cta__label">Telefon</label>
-            <input type="tel" name="phone" class="izrazcy-cta__input" value="+49" placeholder="+49">
+            <label class="izrazcy-cta__label">E-Mail</label>
+            <input type="email" name="email" class="izrazcy-cta__input" placeholder="name@example.de" required>
+          </div>
+          <div class="izrazcy-cta__group">
+            <label class="izrazcy-cta__label">Telefon (optional)</label>
+            <input type="tel" name="phone" class="izrazcy-cta__input" placeholder="+420 / +49 / +...">
           </div>
           <button type="submit" class="izrazcy-cta__submit">Anfrage senden</button>
           <p class="izrazcy-cta__privacy">Mit dem Absenden stimmen Sie unserer <a href="privacy.html" target="_blank">Datenschutzerklärung</a> zu.</p>
@@ -1567,6 +1573,7 @@
             <h4 class="footer__col-title">Kontakt</h4>
             <ul class="footer__col-list">
               <li><a href="mailto:ceramicadecor.de@gmail.com">ceramicadecor.de@gmail.com</a></li>
+              <li><a href="tel:+420771546385">+420 771 546 385</a></li>
             </ul>
             <div class="footer__socials">
               <a href="https://wa.me/420771546385?text=Guten%20Tag!%20Ich%20interessiere%20mich%20f%C3%BCr%20einen%20Kachelkamin%20von%20CeramicaDecor.%20Bitte%20beraten%20Sie%20mich." target="_blank" aria-label="WhatsApp" class="footer__social--wa">
@@ -1599,7 +1606,7 @@
 
   <script src="izrazcy-data.js" async></script>
   <script src="izrazcy-relations.js" async></script>
-  <script src="script.js?v=videos1" defer></script>
+  <script src="script.js?v=launch-speed1" defer></script>
   <script>
   window._onIzrazcyReady = function() {
     // ===== CATALOG =====
@@ -2460,6 +2467,25 @@
       if (!isNaN(idx) && filtered[idx]) openIzrazcyModal(filtered[idx]);
     });
 
+    function escapeTelegramHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, function(char) {
+        return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char];
+      });
+    }
+
+    function sendTelegramLead(text) {
+      return fetch('https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: '-1003909949224',
+          text: text,
+          parse_mode: 'HTML',
+          disable_web_page_preview: true
+        })
+      });
+    }
+
     // ===== FORM =====
     var form = document.getElementById('izrazcyForm');
     if (form) {
@@ -2467,13 +2493,15 @@
         e.preventDefault();
         var formData = new FormData(form);
         var tgName = formData.get('name') || '';
+        var tgEmail = formData.get('email') || '';
         var tgPhone = formData.get('phone') || '';
-        var tgMsg = '\uD83D\uDCCB Лиды с DE сайта\n🇩🇪 Новая заявка с сайта ceramicadecor.de\n\uD83D\uDC64 Имя: ' + tgName + '\n\uD83D\uDCDE Телефон: ' + tgPhone + '\n\uD83D\uDCC4 Страница: Kacheln (Anfragesformular)';
-        fetch('https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: '-1003909949224', text: tgMsg })
-        });
+        var pageUrl = window.location.href.split('#')[0];
+        var tgMsg = '🇩🇪 Новая заявка с сайта <a href="https://ceramicadecor.de/">ceramicadecor.de</a>\n\uD83D\uDC64 Имя: ' + escapeTelegramHtml(tgName);
+        tgMsg += '\n\u2709\uFE0F E-Mail: <a href="mailto:' + escapeTelegramHtml(tgEmail) + '">' + escapeTelegramHtml(tgEmail) + '</a>';
+        tgMsg += '\n\uD83D\uDCDE Телефон: ' + escapeTelegramHtml(tgPhone || '-');
+        tgMsg += '\n\uD83D\uDCC4 Страница: <a href="' + escapeTelegramHtml(pageUrl) + '">' + escapeTelegramHtml(pageUrl) + '</a>';
+        tgMsg += '\n\uD83D\uDCCD Источник: Ofenkacheln-Formular';
+        sendTelegramLead(tgMsg);
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -2504,8 +2532,12 @@
             '<input type="text" id="requestName" placeholder="Wie soll ich Sie kontaktieren?" required>' +
           '</div>' +
           '<div class="request-modal__field">' +
-            '<label for="requestPhone">Telefon</label>' +
-            '<input type="tel" id="requestPhone" placeholder="+49 ___ ________" required>' +
+            '<label for="requestEmail">E-Mail</label>' +
+            '<input type="email" id="requestEmail" placeholder="name@example.de" required>' +
+          '</div>' +
+          '<div class="request-modal__field">' +
+            '<label for="requestPhone">Telefon (optional)</label>' +
+            '<input type="tel" id="requestPhone" placeholder="+420 / +49 / +...">' +
           '</div>' +
           '<div class="request-modal__field">' +
             '<label for="requestMessage">Kommentar (optional)</label>' +
@@ -2523,17 +2555,18 @@
           fbq('track', 'Lead', { content_name: 'Request Form', content_category: 'Ofenkacheln' });
         }
         var name = document.getElementById('requestName').value.trim();
+        var email = document.getElementById('requestEmail').value.trim();
         var phone = document.getElementById('requestPhone').value.trim();
         var message = document.getElementById('requestMessage').value.trim();
-        var tgText = '\u{1F4CB} Лиды с DE сайта\n🇩🇪 Новая заявка с сайта ceramicadecor.de\n\u{1F464} Имя: ' + name + '\n\u{1F4DE} Телефон: ' + phone + '\n\u{1F6D2} Продукт: ' + currentRequestProduct;
-        if (message) tgText += '\n\u{1F4AC} Комментарий: ' + message;
-        tgText += '\n\u{1F4C4} Страница: Kacheln';
-        var tgUrl = 'https://api.telegram.org/bot8019517192:AAG3iZlK3wVMZjfVkNkw8Kf6VYGKjclwnEM/sendMessage';
-        fetch(tgUrl, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: '-1003909949224', text: tgText })
-        });
+        var reqPageUrl = window.location.href.split('#')[0];
+        var tgText = '🇩🇪 Новая заявка с сайта <a href="https://ceramicadecor.de/">ceramicadecor.de</a>\n\u{1F464} Имя: ' + escapeTelegramHtml(name);
+        tgText += '\n\u2709\uFE0F E-Mail: <a href="mailto:' + escapeTelegramHtml(email) + '">' + escapeTelegramHtml(email) + '</a>';
+        tgText += '\n\u{1F4DE} Телефон: ' + escapeTelegramHtml(phone || '-');
+        tgText += '\n\u{1F6D2} Продукт: ' + escapeTelegramHtml(currentRequestProduct);
+        if (message) tgText += '\n\u{1F4AC} Комментарий: ' + escapeTelegramHtml(message);
+        tgText += '\n\u{1F4C4} Страница: <a href="' + escapeTelegramHtml(reqPageUrl) + '">' + escapeTelegramHtml(reqPageUrl) + '</a>';
+        tgText += '\n\u{1F4CD} Источник: Ofenkacheln-Karte';
+        sendTelegramLead(tgText);
         requestModalBody.innerHTML =
           '<div class="request-modal__success">' +
             '<span class="request-modal__success-icon">&#10003;</span>' +
@@ -2579,7 +2612,7 @@
   })();
   </script>
 
-  <script src="search.js?v=videos1" defer></script>
+  <script src="search.js?v=launch-speed1" defer></script>
 
   <button class="scroll-to-top" id="scrollToTop" aria-label="Zurück nach oben">
     <svg viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
