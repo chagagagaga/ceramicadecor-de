@@ -12,32 +12,15 @@
   y.parentNode.insertBefore(t, y);
 })(window, document, 'clarity', 'script', 'wn9tvhnw8i');
 
-/* ----- Active WhatsApp destination by Moscow time ----- */
+/* ----- Active WhatsApp destination ----- */
 (function() {
-  var PHONE_WEEK    = '77788657733';   // Mon 19:00 – Sat 19:00 MSK
-  var PHONE_WEEKEND = '77788639911';   // Sat 19:00 – Mon 19:00 MSK
+  var PHONE_DE = '420771546385';
 
-  function getMoscowDate() {
-    var now = new Date();
-    return new Date(now.getTime() + (now.getTimezoneOffset() + 180) * 60000);
-  }
-
-  function isWeekend() {
-    var msk = getMoscowDate();
-    var d = msk.getDay();   // 0=Sun, 1=Mon, ..., 6=Sat
-    var h = msk.getHours();
-    return (d === 6 && h >= 19) || d === 0 || (d === 1 && h < 19);
-  }
-
-  window.ACTIVE_PHONE = isWeekend() ? PHONE_WEEKEND : PHONE_WEEK;
-
-  var OLD_RAW = '77027352130';
+  window.ACTIVE_PHONE = PHONE_DE;
 
   document.addEventListener('DOMContentLoaded', function() {
-    var newRaw = window.ACTIVE_PHONE;
-
-    document.querySelectorAll('a[href*="wa.me/' + OLD_RAW + '"]').forEach(function (a) {
-      a.href = a.href.replace('wa.me/' + OLD_RAW, 'wa.me/' + newRaw);
+    document.querySelectorAll('a[href*="wa.me/"]').forEach(function (a) {
+      a.href = a.href.replace(/wa\.me\/\d+/, 'wa.me/' + PHONE_DE);
     });
   });
 })();
@@ -595,7 +578,7 @@
   function getWhatsAppUrl(link) {
     var href = link.href;
     var phoneMatch = href.match(/wa\.me\/(\d+)/);
-    var phone = phoneMatch ? phoneMatch[1] : (window.ACTIVE_PHONE || '77027352130');
+    var phone = phoneMatch ? phoneMatch[1] : (window.ACTIVE_PHONE || '420771546385');
     var text = 'Guten Tag! Ich interessiere mich für einen Kachelkamin von CeramicaDecor. Bitte beraten Sie mich.';
 
     return 'https://wa.me/' + phone + '?text=' + encodeURIComponent(text);
