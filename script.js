@@ -125,6 +125,7 @@
     nav.classList.toggle('open', isOpen);
     burger.classList.toggle('active', isOpen);
     overlay.classList.toggle('active');
+    document.body.classList.toggle('nav-open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
     if (isOpen) {
       nav.style.removeProperty('--drawer-correction');
@@ -141,6 +142,7 @@
     nav.classList.remove('open');
     burger.classList.remove('active');
     overlay.classList.remove('active');
+    document.body.classList.remove('nav-open');
     nav.style.removeProperty('--drawer-correction');
     nav.style.removeProperty('margin-left');
     nav.style.removeProperty('width');
