@@ -459,6 +459,7 @@ body.nav-open .header {
   background: #0b0b0b;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
+  z-index: 2000;
 }
 
 body.nav-open .header__logo-img {
@@ -4849,6 +4850,7 @@ body.nav-open .header__logo-img {
     filter: none !important;
     z-index: 1400 !important;
     transform: translate3d(0, -120%, 0) !important;
+    pointer-events: none !important;
     transition: transform 0.35s cubic-bezier(0.25, 0.1, 0.25, 1) !important;
     border-top: 1px solid var(--border) !important;
     box-shadow: 0 24px 48px rgba(0,0,0,0.35) !important;
@@ -4856,6 +4858,7 @@ body.nav-open .header__logo-img {
 
   .header .header__nav.open {
     transform: translate3d(0, 0, 0) !important;
+    pointer-events: auto !important;
   }
 
   .header .header__nav.open .header__nav-link {
@@ -4869,6 +4872,7 @@ body.nav-open .header__logo-img {
 
   .mobile-overlay.active {
     background: rgba(0,0,0,0.35);
+    z-index: 900 !important;
   }
 }
 

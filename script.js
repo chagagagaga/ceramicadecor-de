@@ -124,7 +124,7 @@
     const isOpen = !nav.classList.contains('open');
     nav.classList.toggle('open', isOpen);
     burger.classList.toggle('active', isOpen);
-    overlay.classList.toggle('active');
+    overlay.classList.toggle('active', isOpen);
     document.body.classList.toggle('nav-open', isOpen);
     document.body.style.overflow = isOpen ? 'hidden' : '';
     if (isOpen) {
