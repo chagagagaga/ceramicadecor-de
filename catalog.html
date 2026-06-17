@@ -1162,6 +1162,12 @@
     </div>
   </footer>
 
+  <script>
+    window.CD_ATTRIBUTION_CONFIG = {
+      dryRun: false
+    };
+  </script>
+  <script src="/js/cd-attribution.js" defer></script>
   <script src="script.js?v=launch-speed1" defer></script>
   <script>
   (function() {
@@ -2374,6 +2380,17 @@
         tgText += '\n\u{1F4C4} Страница: <a href="' + escapeTelegramHtml(pageUrl) + '">' + escapeTelegramHtml(pageUrl) + '</a>';
         tgText += '\n\u{1F4CD} Источник: Katalog';
         sendTelegramLead(tgText);
+        if (window.CDSubmitLead) {
+          window.CDSubmitLead({
+            subject: 'Katalog',
+            name: name,
+            email: email,
+            phone: phone,
+            product: currentRequestProduct,
+            comment: message,
+            source: 'Katalog'
+          });
+        }
         requestModalBody.innerHTML =
           '<div class="request-modal__success">' +
             '<span class="request-modal__success-icon">&#10003;</span>' +

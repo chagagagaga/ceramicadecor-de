@@ -1614,6 +1614,12 @@
 
   <script src="izrazcy-data.js" async></script>
   <script src="izrazcy-relations.js" async></script>
+  <script>
+    window.CD_ATTRIBUTION_CONFIG = {
+      dryRun: false
+    };
+  </script>
+  <script src="/js/cd-attribution.js" defer></script>
   <script src="script.js?v=launch-speed1" defer></script>
   <script>
   window._onIzrazcyReady = function() {
@@ -2510,6 +2516,15 @@
         tgMsg += '\n\uD83D\uDCC4 Страница: <a href="' + escapeTelegramHtml(pageUrl) + '">' + escapeTelegramHtml(pageUrl) + '</a>';
         tgMsg += '\n\uD83D\uDCCD Источник: Ofenkacheln-Formular';
         sendTelegramLead(tgMsg);
+        if (window.CDSubmitLead) {
+          window.CDSubmitLead({
+            subject: 'Ofenkacheln-Formular',
+            name: tgName,
+            email: tgEmail,
+            phone: tgPhone,
+            source: 'Ofenkacheln-Formular'
+          });
+        }
         fetch('/', {
           method: 'POST',
           headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -2575,6 +2590,17 @@
         tgText += '\n\u{1F4C4} Страница: <a href="' + escapeTelegramHtml(reqPageUrl) + '">' + escapeTelegramHtml(reqPageUrl) + '</a>';
         tgText += '\n\u{1F4CD} Источник: Ofenkacheln-Karte';
         sendTelegramLead(tgText);
+        if (window.CDSubmitLead) {
+          window.CDSubmitLead({
+            subject: 'Ofenkacheln-Karte',
+            name: name,
+            email: email,
+            phone: phone,
+            product: currentRequestProduct,
+            comment: message,
+            source: 'Ofenkacheln-Karte'
+          });
+        }
         requestModalBody.innerHTML =
           '<div class="request-modal__success">' +
             '<span class="request-modal__success-icon">&#10003;</span>' +

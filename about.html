@@ -741,6 +741,12 @@
     </div>
   </footer>
 
+  <script>
+    window.CD_ATTRIBUTION_CONFIG = {
+      dryRun: false
+    };
+  </script>
+  <script src="/js/cd-attribution.js" defer></script>
   <script src="script.js?v=launch-speed1" defer></script>
   <script>
     (function() {
@@ -801,6 +807,19 @@
             parse_mode: 'HTML',
             disable_web_page_preview: true
           })
+        })
+        .then(function(response) {
+          if (window.CDSubmitLead) {
+            window.CDSubmitLead({
+              subject: 'Über-uns-Formular',
+              name: name,
+              email: email,
+              phone: phone,
+              comment: comment,
+              source: 'Über-uns-Formular'
+            });
+          }
+          return response;
         })
         .then(function(response) {
           if (response.ok) {

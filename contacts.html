@@ -582,6 +582,12 @@
     </div>
   </footer>
 
+  <script>
+    window.CD_ATTRIBUTION_CONFIG = {
+      dryRun: false
+    };
+  </script>
+  <script src="/js/cd-attribution.js" defer></script>
   <script src="script.js?v=launch-speed1" defer></script>
   <script>
     // Contact form validation and submission
@@ -677,6 +683,16 @@
           tgText += '\n\u{1F4C4} Страница: <a href="' + escapeTelegramHtml(pageUrl) + '">' + escapeTelegramHtml(pageUrl) + '</a>';
           tgText += '\n\u{1F4CD} Источник: Kontaktformular';
           sendTelegramLead(tgText);
+          if (window.CDSubmitLead) {
+            window.CDSubmitLead({
+              subject: 'Kontaktformular',
+              name: nameInput.value.trim(),
+              email: emailValue,
+              phone: phoneInput.value.trim(),
+              comment: msgInput && msgInput.value.trim(),
+              source: 'Kontaktformular'
+            });
+          }
           form.style.display = 'none';
           successMsg.classList.add('active');
         });

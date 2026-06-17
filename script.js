@@ -73,6 +73,25 @@
     });
   }
 
+  window.CDSubmitLead = function (data) {
+    if (!window.CDAttribution || typeof window.CDAttribution.submitLead !== 'function') {
+      return Promise.resolve(null);
+    }
+
+    return window.CDAttribution.submitLead({
+      subject: data.subject || data.source || 'CeramicaDecor DE Website Lead',
+      name: data.name || '',
+      email: data.email || '',
+      phone: data.phone || '',
+      comment: data.comment || '',
+      product: data.product || '',
+      contact_method: data.contact_method || 'website_form'
+    }).catch(function (error) {
+      console.error('CD CRM lead error', error);
+      return null;
+    });
+  };
+
   function updateEmailValidityMessage(input) {
     if (!input || input.type !== 'email') return;
     if (input.validity.valueMissing) {
@@ -317,13 +336,17 @@
       });
     }
 
-    sendTelegramLead(buildTelegramLeadMessage({
+    var leadData = {
+      subject: sourceLabel || 'Website-Formular',
       name: nameInput.value.trim(),
       email: emailValue,
       phone: phoneValue,
       comment: commentInput && commentInput.value.trim(),
       source: sourceLabel || 'Website-Formular'
-    }));
+    };
+
+    sendTelegramLead(buildTelegramLeadMessage(leadData));
+    window.CDSubmitLead(leadData);
 
     return true;
   }
