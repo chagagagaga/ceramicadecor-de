@@ -32,6 +32,7 @@
       "utm_campaign",
       "utm_content",
       "utm_term",
+      "utm_id",
       "fbclid",
       "gclid",
       "yclid",
@@ -154,7 +155,50 @@
   }
 
   function getParam(params, key) {
-    return params.get(key) || params.get(key.toUpperCase()) || "";
+    var lowerKey = key.toLowerCase();
+    var upperKey = key.toUpperCase();
+    var matchedValue = "";
+
+    params.forEach(function (value, paramKey) {
+      if (matchedValue) {
+        return;
+      }
+
+      var normalizedKey = String(paramKey || "").toLowerCase();
+      if (
+        paramKey === key ||
+        paramKey === upperKey ||
+        normalizedKey === lowerKey ||
+        normalizedKey.endsWith("?" + lowerKey) ||
+        normalizedKey.endsWith("&" + lowerKey)
+      ) {
+        matchedValue = value || "";
+      }
+    });
+
+    return matchedValue;
+  }
+
+  function normalizeAttributionValues(values) {
+    var source = String(values.utm_source || "").toLowerCase();
+    var medium = String(values.utm_medium || "").toLowerCase();
+
+    if (
+      medium === "ads" &&
+      (source === "ig" || source === "fb" || source === "instagram" || source === "facebook")
+    ) {
+      values.utm_source = "meta";
+    }
+
+    if (String(values.utm_source || "").toLowerCase() === "meta" && medium === "ads" && isLongNumeric(values.utm_term)) {
+      values.utm_term = "";
+    }
+
+    return values;
+  }
+
+  function isLongNumeric(value) {
+    return /^\d{8,}$/.test(String(value || ""));
   }
 
   function readUrlAttribution() {
@@ -177,7 +221,7 @@
     result.current_page_clean = cleanUrl(window.location.href);
     result.ym_client_id = getYmClientId();
 
-    return result;
+    return normalizeAttributionValues(result);
   }
 
   function cleanUrl(urlValue) {
